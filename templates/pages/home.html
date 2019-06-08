@@ -4,7 +4,34 @@
 {% block title %}Home page{% endblock title %}
 
 {% block content %}
-<h1>Home page</h1>
-<img src="{% static 'images/falconx.png' %}" class="img-fluid" alt="FalconX launch"/>
+
+
+
+
+  <section class="showcase">
+  <h1 class="display-4 vjf">Live Streams</h1>
+  <br/>
+    <div class="container-fluid p-0">
+
+{% for LiveStream in LiveStreams%}
+      <div class="row no-gutters">
+        <div class="col-lg-6 text-white showcase-img" style="background-image: url('https://picsum.photos/600');"></div>
+        <div class="col-lg-6 my-auto showcase-text">
+          <h2>{{LiveStream.name}}</h2>
+          <p class="lead mb-0">{{LiveStream.description}}</p>
+             <br/>
+      <a href="{% url 'stream_detail' LiveStream.uid  %}" class="btn btn-primary">Watch Now </a>
+  
+        </div>
+      </div>
+<hr size="30">
+  {% endfor %}
+      </div>
+
+      
+
+    </div>
+  </section>
+
 {% endblock content %}
 
