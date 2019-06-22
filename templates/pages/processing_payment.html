@@ -1,0 +1,40 @@
+{% extends '_base.html' %}
+
+{% block title %}Validating the payment{% endblock %}
+
+{% block content %}
+
+{% if subscriptions %}
+{% comment %} {% for subscription in subscriptions %}
+<div class="col-lg-6 my-auto showcase-text">
+     <h2>{{subscription.uid__uid}}</h2>
+          <p class="lead mb-0">{{LiveStream.description}}</p>
+             <br/> 
+ <a href="{% url 'stream_detail' subscription.uid  %}" class="btn btn-primary">Watch Now </a> 
+ {% endfor %} {% endcomment %}
+
+<h1>Processing the Payment</h1>
+<p>Please wait for <div id="test"></div></p>
+<p>then go back to home page</p>
+{% else %}
+<h1>Processing the Payment</h1>
+<p>Please wait for <div id="test"></div></p>
+<p>then go back to home page</p>
+{% endif %}
+
+<script>
+
+setInterval(function () {
+    var d = new Date();
+    var seconds = d.getMinutes() * 60 + d.getSeconds(); //convet 00:00 to seconds for easier caculation
+    var fiveMin = 120; //five minutes is 300 seconds!
+    var timeleft = fiveMin - seconds % fiveMin; // let's say 01:30, then current seconds is 90, 90%300 = 90, then 300-90 = 210. That's the time left!
+    var result = parseInt(timeleft / 60) + ':' + timeleft % 60; //formart seconds into 00:00 
+    document.getElementById('test').innerHTML = result;
+
+}, 500) //calling it every 0.5 second to do a count down
+
+</script>
+
+
+{% endblock content %}

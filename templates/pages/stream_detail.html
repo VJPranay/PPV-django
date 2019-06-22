@@ -4,6 +4,7 @@
 {% block title %}Stream Details{% endblock title %}
 
 {% block content %}
+{% load thumbnail %}
 
 
 
@@ -15,13 +16,12 @@
   <h1 class="display-4 vjf">{{object.name}}</h1>
   <br/>
     <div class="container-fluid p-0">
-
       <div class="row no-gutters">
         {% comment %} style="background-image: url('https://picsum.photos/600');"></div> {% endcomment %}
-        <div class="col-lg-6 text-white showcase-img" >
         <link href="//vjs.zencdn.net/5.10/video-js.css" rel="stylesheet">
     <script src="//vjs.zencdn.net/5.10/video.js"></script>
     <script src="https://npmcdn.com/videojs-contrib-hls@^3.0.0/dist/videojs-contrib-hls.js"></script>
+<div class="col-lg-6 text-white showcase-img" >
 <video id="sankofatv-live" class="video-js vjs-default-skin"  controls preload="auto"  width="640" height="360">  <source src="http://live.sankofatv.com/hls/sankofatv.m3u8" type="application/x-mpegURL" />
 </video>
     <script>
@@ -29,6 +29,8 @@
     </script>
     </div>
         <div class="col-lg-6 my-auto showcase-text">
+                  <h2>{{object.name}}</h2>
+          <p class="lead mb-0">{{object.description}}</p>
           {% comment %} <h2></h2>
           <p class="lead mb-0">{{object.description}}</p>
              <br/>
@@ -50,13 +52,14 @@
   <br/>
     <div class="container-fluid p-0">
       <div class="row no-gutters">
-        <div class="col-lg-6 text-white showcase-img" style="background-image: url('https://picsum.photos/600');"></div>
+      {% thumbnail object.image "640x360" crop="center" as im %}
+        <div class="col-lg-6 text-white showcase-img" style="background-image: url('{{im.url}}');"></div>
+               {% endthumbnail %}
         <div class="col-lg-6 my-auto showcase-text">
           <h2>{{object.name}}</h2>
           <p class="lead mb-0">{{object.description}}</p>
-             <br/>
-      <a href="{% url 'stream_detail' object.uid  %}" class="btn btn-primary">Subscribe </a>
-  
+          <p class="lead mb-6">Purchase this at {{object.price}} USD per view</p>
+     {{form.render}}
         </div>
       </div>
 <hr size="30">

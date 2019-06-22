@@ -4,6 +4,7 @@
 {% block title %}Home page{% endblock title %}
 
 {% block content %}
+{% load thumbnail %}
 
 
 
@@ -15,7 +16,9 @@
 
 {% for LiveStream in LiveStreams%}
       <div class="row no-gutters">
-        <div class="col-lg-6 text-white showcase-img" style="background-image: url('https://picsum.photos/600');"></div>
+      {% thumbnail LiveStream.image "640x360" crop="center" as im %}
+        <div class="col-lg-6 text-white showcase-img" style="background-image: url('{{im.url}}');"></div>
+        {% endthumbnail %}
         <div class="col-lg-6 my-auto showcase-text">
           <h2>{{LiveStream.name}}</h2>
           <p class="lead mb-0">{{LiveStream.description}}</p>

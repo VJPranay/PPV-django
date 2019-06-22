@@ -25,7 +25,7 @@ SECRET_KEY = '43)%4yx)aa@a=+_c(fn&kf3g29xax+=+a&key9i=!98zyim=8j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['6c4fb26a.ngrok.io','127.0.0.1']
 
 
 # Application definition
@@ -45,6 +45,9 @@ INSTALLED_APPS = [
     'allauth.account',
     'crispy_forms',
     'debug_toolbar',
+    'paypal.standard.ipn',  
+    "django_cron", 
+    'sorl.thumbnail',
 
     # Local
 
@@ -61,6 +64,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+CRON_CLASSES = [
+    "streams.cron.CheckSubscriptions",
 ]
 
 ROOT_URLCONF = 'djangox_project.urls'
@@ -132,9 +139,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media") 
+
+MEDIAFILES_DIRS = os.path.join(BASE_DIR, "media") 
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -164,3 +178,5 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
+PAYPAL_RECEIVER_EMAIL = 'paypal.buyer@godheadmedia.com'
+PAYPAL_TEST = True
