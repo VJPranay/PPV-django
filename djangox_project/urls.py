@@ -17,3 +17,7 @@ if settings.DEBUG:
     urlpatterns = [
         path('__debug__/', include(debug_toolbar.urls)),
 ] + urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIAFILES_DIRS)
+
+admin.site.site_header = "World's Famous Supreme Team Admin"
+admin.site.site_title = "World's Famous Supreme Team Admin"
+admin.site.index_title = "World's Famous Supreme Team Admin"

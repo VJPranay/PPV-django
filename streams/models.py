@@ -3,18 +3,31 @@ import uuid
 from users.models import CustomUser
 from django.utils import timezone
 from sorl.thumbnail import ImageField, get_thumbnail
+import random
+import string
+
 
 def calculate_expiry_time():
     return timezone.now() + timezone.timedelta(hours=6)
+
+def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
+    return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(size))
+
+a = id_generator()
 
 STATUS_CHOICES = (
     (True, ("Start")),
     (False, ("Stop"))
 )
 
+
+
 # Create your models here.
 class LiveStream(models.Model):
+
     name = models.CharField(max_length=255,blank=True,null=True)
+    rtmp_url = models.CharField(max_length=255,default='rtmp://62.210.116.81:1935/show')
+    key = models.CharField(max_length=255,default=id_generator)
     description = models.TextField(blank=True,null=True)
     image = ImageField(blank=True,null=True,upload_to="media/stream_cover")
     status = models.BooleanField(blank=True,null=True,choices=STATUS_CHOICES)
