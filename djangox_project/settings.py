@@ -23,15 +23,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '43)%4yx)aa@a=+_c(fn&kf3g29xax+=+a&key9i=!98zyim=8j'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['62.210.116.81','127.0.0.1']
+ALLOWED_HOSTS = ['live.wfsts.com']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-        'users',
+'users',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,11 +46,12 @@ INSTALLED_APPS = [
     'crispy_forms',
     'debug_toolbar',
     'paypal.standard.ipn',  
-    "django_cron", 
+    'django_cron', 
     'sorl.thumbnail',
 
     # Local
-
+#'users'
+#'admin',
     'pages',
     'streams',
 ]
@@ -94,10 +95,21 @@ WSGI_APPLICATION = 'djangox_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
+"""DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}"""
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'vjpranay',
+        'USER': 'vjpranay',
+        'PASSWORD': 'J35u5777#',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -144,6 +156,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
 
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media") 
@@ -178,5 +192,5 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
-PAYPAL_RECEIVER_EMAIL = 'paypal.buyer@godheadmedia.com'
-PAYPAL_TEST = True
+PAYPAL_RECEIVER_EMAIL = 'support@wfsts.com'
+PAYPAL_TEST = False

@@ -22,7 +22,7 @@
     <script src="//vjs.zencdn.net/5.10/video.js"></script>
     <script src="https://npmcdn.com/videojs-contrib-hls@^3.0.0/dist/videojs-contrib-hls.js"></script>
 <div class="col-lg-6 text-white showcase-img" >
-<video id="sankofatv-live" class="video-js vjs-default-skin"  controls preload="auto"  width="640" height="360">  <source src="http://62.210.116.81/hls/{{object.key}}.m3u8" type="application/x-mpegURL" />
+<video id="sankofatv-live" class="video-js vjs-default-skin vjs-16-9"  controls preload="auto"  width="640" height="360">  <source src="https://live.wfsts.com/live3/{{object.key}}.m3u8" type="application/x-mpegURL" />
 </video>
     <script>
       var player = videojs('sankofatv-live');
@@ -74,4 +74,5 @@
 
   
 {% endblock content %}
+
 

@@ -3,7 +3,7 @@ from .models import Subscriptions
 from datetime import datetime,timedelta
 
 class CheckSubscriptions(CronJobBase):
-    RUN_EVERY_MINS = 0.0001 # every 5 mins
+    RUN_EVERY_MINS = 5 # every 5 mins
 
     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
     code = 'streams.cron.CheckSubscriptions'    # a unique code
